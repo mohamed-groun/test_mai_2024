@@ -14,10 +14,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(NewsApiService $newsApiService , RssFluxService $rssFluxService): Response
+    public function index(NewsApiService $newsApiService, RssFluxService $rssFluxService): Response
     {
         $articles = $newsApiService->getImages();
-        $rssFlux= $rssFluxService->getFlux();
+        $rssFlux = $rssFluxService->getFlux();
         $articlesImages = Helper::getOnlyImagesLinks($articles);
         $fluxImages = Helper::getMediaContentURLs($rssFlux);
 
