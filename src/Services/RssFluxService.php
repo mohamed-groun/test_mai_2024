@@ -15,7 +15,6 @@ class RssFluxService
         $this->client = $client;
 
     }
-
     public function getFlux(): array
     {
 
@@ -25,7 +24,7 @@ class RssFluxService
         );
 
         $xmlEncoder = new XmlEncoder();
-        $array = $xmlEncoder->decode($response->getContent(), 'xml');
+            $array = $xmlEncoder->decode($response->getContent(), 'xml');
 
         return $array["channel"]["item"];
     }

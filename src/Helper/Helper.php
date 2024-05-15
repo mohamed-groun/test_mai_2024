@@ -2,11 +2,9 @@
 
 namespace App\Helper;
 
-use phpDocumentor\Reflection\Types\Self_;
-
 class Helper
 {
-    public static $imageExtensions = array('jpg', 'jpeg', 'png', 'gif', 'bmp');
+    const IMAGE_EXTENTIONS= array('jpg', 'jpeg', 'png', 'gif', 'bmp');
 
     public static function getOnlyImagesLinks($articles)
     {
@@ -31,7 +29,7 @@ class Helper
                 $url = $item['media:content']['@url'];
                 $extension = pathinfo($url, PATHINFO_EXTENSION);
 
-                if (in_array(strtolower($extension), Self::$imageExtensions)) {
+                if (in_array(strtolower($extension), Self::IMAGE_EXTENTIONS)) {
                     $mediaContentURLs[] = $url;
                 }
             }
@@ -39,6 +37,5 @@ class Helper
 
         return $mediaContentURLs;
     }
-
 
 }
