@@ -17,12 +17,9 @@ class HomeController extends AbstractController
     public function index(NewsApiService $newsApiService , RssFluxService $rssFluxService): Response
     {
         $articles = $newsApiService->getImages();
-
         $rssFlux= $rssFluxService->getFlux();
-
         $articlesImages = Helper::getOnlyImagesLinks($articles);
         $fluxImages = Helper::getMediaContentURLs($rssFlux);
-
 
         return $this->render('home/index.html.twig', [
             'images' => array_unique(array_merge($articlesImages, $fluxImages)),
