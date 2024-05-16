@@ -3,11 +3,14 @@
 {% block body %}
     <h1>Fioulmarket - Test</h1>
 
-    <div class="gallery cf">
+    <div class="row">
         {% for image in images %}
-            <div>
-                <img src="{{ image }}" title="{{ image }}"/>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="{{ image }}" class="card-img-top img-fluid" title="{{ image }}" alt="Image description">
+                </div>
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}
