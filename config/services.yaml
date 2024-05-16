@@ -28,7 +28,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-        # Déclaration des services fils et leur liaison avec l'interface parente
+        # Déclaration des services
     App\Services\NewsApiService:
         class: App\Services\NewsApiService
         arguments:
@@ -41,6 +41,3 @@ services:
         arguments:
             $client: '@http_client'
             $logger: '@logger'
-
-        # Alias pour l'interface parente
-    App\Services\DataProviderInterface: ~
