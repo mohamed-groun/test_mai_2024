@@ -23,7 +23,7 @@ class NewsApiService
         try {
             $response = $this->client->request(
                 'GET',
-                'https://newsapi.org/v2/top-headlinesd',
+                'https://newsapi.org/v2/top-headlines',
                 [
                     'query' => [
                         'country' => 'us',
