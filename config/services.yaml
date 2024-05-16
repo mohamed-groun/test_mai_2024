@@ -28,3 +28,19 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+        # Déclaration des services fils et leur liaison avec l'interface parente
+    App\Services\NewsApiService:
+        class: App\Services\NewsApiService
+        arguments:
+            $client: '@http_client'
+            $logger: '@logger'
+            $apiKey: '%env(API_KEY_NEWSAPI)%'
+
+    App\Services\RssFluxService:
+        class: App\Services\RssFluxService
+        arguments:
+            $client: '@http_client'
+            $logger: '@logger'
+
+        # Alias pour l'interface parente
+    App\Services\DataProviderInterface: ~

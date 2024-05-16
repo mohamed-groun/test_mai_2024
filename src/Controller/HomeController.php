@@ -11,13 +11,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
     /**
      * @Route("/", name="app_home")
      */
     public function index(NewsApiService $newsApiService, RssFluxService $rssFluxService): Response
     {
-        $articles = $newsApiService->getImages();
-        $rssFlux = $rssFluxService->getFlux();
+        $articles = $newsApiService->fetchData();
+        $rssFlux = $rssFluxService->fetchData();
+
         $articlesImages = Helper::getOnlyImagesLinks($articles);
         $fluxImages = Helper::getMediaContentURLs($rssFlux);
 

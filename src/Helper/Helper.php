@@ -2,13 +2,19 @@
 
 namespace App\Helper;
 
-class Helper
+final class Helper
 {
-    const IMAGE_EXTENTIONS= array('jpg', 'jpeg', 'png', 'gif', 'bmp');
+    private const IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
 
-    public static function getOnlyImagesLinks($articles)
+    /**
+     * Récupère les liens d'images des articles.
+     *
+     * @param array $articles Liste des articles.
+     * @return array Liste des liens d'images.
+     */
+    public static function getOnlyImagesLinks(array $articles): array
     {
-        $imageLinks = array();
+        $imageLinks = [];
 
         foreach ($articles as $article) {
             if (!empty($article['urlToImage'])) {
@@ -19,17 +25,22 @@ class Helper
         return $imageLinks;
     }
 
-    public static function getMediaContentURLs($flux)
+    /**
+     * Récupère les URLs du contenu média qui sont des images.
+     *
+     * @param array $flux Liste des items du flux.
+     * @return array Liste des URLs de contenu média.
+     */
+    public static function getMediaContentURLs(array $flux): array
     {
-        $mediaContentURLs = array();
+        $mediaContentURLs = [];
 
         foreach ($flux as $item) {
             if (isset($item['media:content']['@url']) && !empty($item['media:content']['@url'])) {
-
                 $url = $item['media:content']['@url'];
                 $extension = pathinfo($url, PATHINFO_EXTENSION);
 
-                if (in_array(strtolower($extension), Self::IMAGE_EXTENTIONS)) {
+                if (in_array(strtolower($extension), self::IMAGE_EXTENSIONS, true)) {
                     $mediaContentURLs[] = $url;
                 }
             }
@@ -37,5 +48,4 @@ class Helper
 
         return $mediaContentURLs;
     }
-
 }
